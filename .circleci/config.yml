@@ -27,6 +27,10 @@ jobs:
     steps:
       - checkout
       - run: npm audit
+      - run:
+          name: on error
+          command: "Error occurred when analyzing"
+          when: on_fail
 workflows:
   default:
     jobs:
