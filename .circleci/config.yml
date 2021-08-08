@@ -49,13 +49,12 @@ jobs:
             aws cloudformation deploy \
             --template-file template.yml \
             --stack-name node-server-stack
-
-    smoke_test:
-      docker:
-        - image: alpine:latest
-      steps:
-        - run: apk add --update curl
-        - run:
+  smoke_test:
+    docker:
+      - image: alpine:latest
+    steps:
+      - run: apk add --update curl
+      - run:
           name: Run smoke test
           command: |
             URL = "https://blog.udacity.com" #test if blog.udacity.com is reacheable
@@ -65,8 +64,9 @@ jobs:
             else
               return 0  # simulate an error to cause the job to fail
             fi
-        - destroy_environment:
+      - destroy_environment:
           when: on_fail
+      
 workflows:
   default:
     jobs:
