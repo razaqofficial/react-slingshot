@@ -64,9 +64,6 @@ jobs:
             else
               return 0  # simulate an error to cause the job to fail
             fi
-      - destroy_environment
-        when: on_fail
-      
 workflows:
   default:
     jobs:
