@@ -36,9 +36,7 @@ jobs:
 workflows:
   default:
     jobs:
-      - create_infrastructure:
-          requires:
-            - analyze
+      - create_infrastructure
       - smoke_test:
           requires:
             - create_infrastructure
