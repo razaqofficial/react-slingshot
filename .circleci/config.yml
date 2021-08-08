@@ -6,43 +6,9 @@ commands:
           name: Delete environment
           command: |
             aws cloudformation delete-stack --stack-name prod-${CIRCLE_WORKFLOW_ID}
-
 jobs:
-  build:
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
-      - checkout
-      - run: npm i
-      - save_cache:
-          key: "npm-packages"
-          paths:
-            - /node_modules
-      - run: npm run lint
-  test:
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
-      - checkout
-      - restore_cache:
-          key: "npm-packages"
-      - run: npm i
-      - run: npm run test
-  analyze:
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
-      - checkout
-      - restore_cache:
-          key: "npm-packages"
-      - run: npm i
-      - run: npm run test
-      - run:
-          name: on error
-          command: echo "Error occurred when analyzing"
-          when: on_fail
   create_infrastructure:
-    docker: 
+    docker:
       - image: amazon/aws-cli
     steps:
       - checkout
@@ -62,7 +28,7 @@ jobs:
           command: |
             URL = "https://blog.udacity.com" #test if blog.udacity.com is reacheable
             if curl -s --head ${URL}
-            then 
+            then
               return 0
             else
               return 0  # simulate an error to cause the job to fail
