@@ -1,6 +1,15 @@
 Description: >
   Author: Abdurrazaq Ogunlade
   This is a template that setup cloud resource
+Parameters:
+  EnvironmentName:
+    Description: An Environment name that will be prefixed to resources
+    Type: String
+  ServerAmi:
+    Description: Image to be use by the sever
+    Type: String
+  VpcID:
+    Description: Vpc Id to be use to the security group
 Resources:
   EC2Instance:
     Type: 'AWS::EC2::Instance'
@@ -8,7 +17,10 @@ Resources:
       SecurityGroups:
         - !Ref InstanceSecurityGroup
       KeyName: oregon-credentials
-      ImageId: ''
+      ImageId: !Ref ServerAmi
+      Tags:
+        - key: Name
+          Value: !Ref EnvironmentName
   InstanceSecurityGroup:
    Type: 'AWS::EC2::SecurityGroup'
    Properties:
@@ -18,5 +30,5 @@ Resources:
           FromPort: '22'
           ToPort: '22'
           CidrIp: 0.0.0.0/0
-      VpcId: 'vpc-69675911'
+      VpcId: !Ref VpcID
 

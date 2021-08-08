@@ -17,7 +17,8 @@ jobs:
           name: Ensure backend infrastructure exist
           command: |
             aws cloudformation deploy \
-            --template-file template.yml \
+            --template-file cloudformation/template.yml \
+            --parameters cloudformation/params.json
             --stack-name prod-${CIRCLE_WORKFLOW_ID}
       - destroy_environment
   smoke_test:

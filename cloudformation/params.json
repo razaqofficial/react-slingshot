@@ -1,0 +1,14 @@
+[
+  {
+    "ParameterKey": "EnvironmentName",
+    "ParameterValue": "Slingshot"
+  },
+  {
+    "ParameterKey": "ServerAMI",
+    "ParameterValue": "ami-090717c950a5c34d3"
+  },
+  {
+    "ParameterKey": "VpcID",
+    "ParameterValue": "vpc-69675911"
+  }
+]
