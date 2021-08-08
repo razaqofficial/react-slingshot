@@ -18,7 +18,6 @@ jobs:
           command: |
             aws cloudformation deploy \
             --template-file cloudformation/template.yml \
-            --parameters cloudformation/params.json \
             --stack-name prod-${CIRCLE_WORKFLOW_ID}
       - destroy_environment
   smoke_test:
