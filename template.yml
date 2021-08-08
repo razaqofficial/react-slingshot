@@ -1,0 +1,23 @@
+Description: >
+  Author: Abdurrazaq Ogunlade
+  This is a template that setup cloud resource
+
+Resources:
+EC2Instance:
+  Type: 'AWS::EC2::Instance'
+  Properties:
+    SecurityGroups:
+      - !Ref InstanceSecurityGroup
+    KeyName: oregon-credentials
+    ImageId: ''
+InstanceSecurityGroup:
+ Type: 'AWS::EC2::SecurityGroup'
+ Properties:
+    GroupDescription: Enable SSH access via port 22
+    SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: '22'
+        ToPort: '22'
+        CidrIp: 0.0.0.0/0
+    VpcId: vpc-69675911
+
