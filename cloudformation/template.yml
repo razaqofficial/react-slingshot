@@ -16,7 +16,7 @@ Resources:
     Type: 'AWS::EC2::Instance'
     DependsOn: InstanceSecurityGroup
     Properties:
-      SecurityGroups:
+      SecurityGroupIds:
         - !Ref InstanceSecurityGroup
       KeyName: oregon-credentials
       ImageId: 'ami-090717c950a5c34d3'
